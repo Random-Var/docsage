@@ -1,21 +1,71 @@
 @import "tailwindcss";
 
 :root {
+  /* Light theme variables */
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --ring: #3b82f6;
+  
+  /* Layout variables */
+  --header-height: 64px;
+  --section-profile-height: 80px;
+  --sidebar-width: 256px;
+  --sidebar-width-collapsed: 80px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark theme */
+.theme-dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #1a1a1a;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --input: #1a1a1a;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ededed;
+  --accent: #1a1a1a;
+  --accent-foreground: #ededed;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --ring: #3b82f6;
+}
+
+/* System theme (uses prefers-color-scheme) */
+.theme-system {
+  /* Uses the default :root values */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  .theme-system {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --muted: #1a1a1a;
+    --muted-foreground: #a1a1aa;
+    --border: #27272a;
+    --input: #1a1a1a;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #ededed;
+    --accent: #1a1a1a;
+    --accent-foreground: #ededed;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --ring: #3b82f6;
   }
 }
 
@@ -24,3 +74,157 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Layout utility classes */
+.bg-app {
+  background-color: var(--background);
+}
+.text-app {
+  color: var(--foreground);
+}
+.bg-muted {
+  background-color: var(--muted);
+}
+.text-muted {
+  color: var(--muted-foreground);
+}
+.border-app {
+  border-color: var(--border);
+}
+.bg-input {
+  background-color: var(--input);
+}
+
+/* Header and section heights */
+.bg-header {
+  background-color: var(--background);
+  height: var(--header-height);
+}
+.bg-section-profile {
+  background-color: var(--background);
+  height: var(--section-profile-height);
+}
+
+/* Sidebar classes */
+.sidebar {
+  background-color: var(--background);
+  border-right: 1px solid var(--border);
+  transition: width 0.2s ease;
+}
+.sidebar-expanded {
+  width: var(--sidebar-width);
+}
+.sidebar-collapsed {
+  width: var(--sidebar-width-collapsed);
+}
+
+/* Button classes */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.btn-secondary:hover {
+  background-color: var(--accent);
+}
+.btn-ghost {
+  background-color: transparent;
+  color: var(--foreground);
+}
+.btn-ghost:hover {
+  background-color: var(--accent);
+}
+
+/* Input classes */
+.input {
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--foreground);
+  transition: border-color 0.2s ease;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Card classes */
+.card {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.card-muted {
+  background-color: var(--muted);
+}
+
+/* Chat message classes */
+.message-user {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: 1rem 1rem 0.25rem 1rem;
+  padding: 0.75rem 1.5rem;
+  max-width: 28rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.message-bot {
+  background-color: var(--muted);
+  color: var(--foreground);
+  border-radius: 1rem 1rem 1rem 0.25rem;
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+  max-width: 64rem;
+}
+
+/* Popup classes */
+.popup {
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+}
+
+/* Hover states */
+.hover-bg {
+  transition: background-color 0.2s ease;
+}
+.hover-bg:hover {
+  background-color: var(--accent);
+}
+
+/* Transition utilities */
+.transition-all {
+  transition: all 0.2s ease;
+}
+.transition-colors {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Example usage:
+  <div class="bg-app text-app">Main content</div>
+  <div class="sidebar sidebar-expanded">Sidebar</div>
+  <button class="btn btn-primary">Primary Button</button>
+  <input class="input" placeholder="Type here..." />
+  <div class="card">Card content</div>
+  <div class="message-user">User message</div>
+  <div class="message-bot">Bot message</div>
+  <div class="popup">Popup content</div>
+*/

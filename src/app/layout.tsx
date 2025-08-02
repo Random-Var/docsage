@@ -18,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body
-          className={`${inter.className}`}
-        >
+        <body className={`${inter.className} bg-app text-app theme-system`}>
           {children}
         </body>
       </Providers>
